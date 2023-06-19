@@ -1,11 +1,19 @@
 const express = require('express');
+const favicon = require('serve-favicon');
+const indexRoutes = require('./routes/index.routes'); 
+
+// App configuration
 const app = express();
-const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+// Static files
+app.use(favicon('public/assets/favicon.png'));
+app.use(express.static('public/views/login'));
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+
+// Routes
+app.use(indexRoutes);
+
+// Server
+app.listen(3000, () => {
+  console.log('http://localhost:3000');
 });
