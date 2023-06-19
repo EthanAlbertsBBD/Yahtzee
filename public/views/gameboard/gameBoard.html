@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>Game Board</title>
+<link rel="stylesheet" href="gameBoard.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login or Register</title>
+    <!-- CUSTOM CSS -->
+    <!--    <link rel="stylesheet" href="style.css">-->
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+<section class="signin-signup-container">
+        <h2 class="title">Game Board</h2>
+        <section title="Board">
+            <section>
+                <p>Dice 1</p>
+                <p>Dice 2</p>
+                <p>Dice 3</p>
+                <p>Dice 4</p>
+                <p>Dice 5</p>
+            </section>
+            <button id="roll-dice-btn">Roll Dice</button>
+        </section>
+
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    // Get references to the dice elements
+    var diceElements = document.querySelectorAll("section[title='Board'] p");
+
+    // Function to roll the dice
+    function rollDice() {
+        // Generate random numbers for each dice
+        var diceValues = [];
+        for (var i = 0; i < diceElements.length; i++) {
+            var value = Math.floor(Math.random() * 6) + 1;
+            diceValues.push(value);
+        }
+
+        // Update the dice values on the page
+        for (var i = 0; i < diceElements.length; i++) {
+            diceElements[i].textContent = "Dice " + (i + 1) + ": " + diceValues[i];
+        }
+    }
+
+    // Add click event listener to the roll dice button
+    var rollDiceBtn = document.getElementById("roll-dice-btn");
+    rollDiceBtn.addEventListener("click", rollDice);
+
+    // Add click event listeners to the dice elements for selection
+    for (var i = 0; i < diceElements.length; i++) {
+        diceElements[i].addEventListener("click", function() {
+            // Add your code for dice selection here
+            console.log("Dice selected: " + this.textContent);
+        });
+    }
+});
+        </script>
+</section>
+</body>
