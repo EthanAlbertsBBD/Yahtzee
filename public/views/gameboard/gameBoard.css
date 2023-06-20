@@ -1,0 +1,38 @@
+.selected {
+    color: chocolate;
+}
+
+.game-board-container {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-auto-rows: 10vw;
+}
+
+.score {
+    display: grid;
+    grid-template-columns: repeat(2, 20%);
+    /* border: 1px solid black; */
+}
+
+.score > * {
+    border: 1px solid black;
+}
+
+.score_board {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.score_board > *:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+.score_board > * {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+    justify-content: start;
+    align-items: center;
+    padding-left: 2px;
+}
