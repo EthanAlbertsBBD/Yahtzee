@@ -2,7 +2,7 @@
 <html lang="en">
 
 <title>Game Board</title>
-<link rel="stylesheet" href="gameBoard.css">
+<link rel="stylesheet" href="./gameBoard.css">
 
 <head>
     <meta charset="UTF-8">
@@ -20,19 +20,44 @@
 </head>
 
 <body>
-<section class="game-board-container">
-        <h2 class="title">Game Board</h2>
-        <section title="Board">
-            <section>
-                <p>Dice 1</p>
-                <p>Dice 2</p>
-                <p>Dice 3</p>
-                <p>Dice 4</p>
-                <p>Dice 5</p>
-            </section>
-            <button id="roll-dice-btn">Roll Dice</button>
-        </section>
+<h2 class="title">Game Board</h2>
 
-    <script src="game.js"></script>
-</section>
+<article class="game-board-container">
+    <script src="./game.js"></script>
+
+    <section title="board" id="board">
+        <section>
+            <p>Dice 1</p>
+            <p>Dice 2</p>
+            <p>Dice 3</p>
+            <p>Dice 4</p>
+            <p>Dice 5</p>
+        </section>
+        <button id="roll-dice-btn">Roll Dice</button>
+    </section>
+
+    <section title="score" class="score">
+        <section title="combo" class="score_board">
+            <span>Dice Combinations</span>
+            <span>Ones</span>
+            <span>Twos</span>
+            <span>Threes</span>
+            <span>Fours</span>
+            <span>Fives</span>
+            <span>Sixes</span>
+        </section>
+        <section title="points" class="score_board" id="score">
+            <span>Score</span>
+            <span id="ones">0</span>
+            <span id="twos">0</span>
+            <span id="threes">0</span>
+            <span id="fours">0</span>
+            <span id="fives">0</span>
+            <span id="sixes">0</span>
+        </section>
+    </section>
+    <section>
+        <p id="dice-rolls-message">Roll dice to start</p>
+    </section>
+</article>
 </body>

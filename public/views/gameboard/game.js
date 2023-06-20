@@ -1,65 +1,105 @@
+const valueOfDice = [];
+
 function initializeGame() {
-    // JavaScript code for rolling dice and selecting them
     document.addEventListener("DOMContentLoaded", function () {
-        // Get references to the dice elements
-        const diceElements = document.querySelectorAll("section[title='Board'] p");
+        const diceContainer = document.getElementById("board");
+        const diceElements = diceContainer.querySelectorAll("p");
+        const diceRollsMessage = document.getElementById("dice-rolls-message");
 
         let selectedDice = [];
+        let rolls = 0;
 
-        // Function to roll the dice
         function rollDice() {
-            selectedDice = [];
+            rolls += 1;
 
-            // Remove the "selected" class from dice elements
-            diceElements.forEach(function(diceElement) {
+            if (rolls > 4) {
+                return;
+            }
+
+            diceElements.forEach((diceElement) => {
                 diceElement.classList.remove("selected");
             });
 
-            // Generate random numbers for each dice
-            const diceValues = [];
+            selectedDice.forEach((diceIndex) => {
+                const diceElement = diceElements[diceIndex];
+                const prevValue = parseInt(diceElement.textContent.split(":")[1].trim());
+                valueOfDice.push(prevValue);
+            });
 
-            for (let i = 0; i < diceElements.length; i++) {
-                const value = Math.floor(Math.random() * 6) + 1;
-                diceValues.push(value);
-            }
+            console.log(valueOfDice);
+            selectedDice = [];
 
-            // Update the dice values on the page
-            for (let i = 0; i < diceElements.length; i++) {
-                diceElements[i].textContent = "Dice " + (i + 1) + ": " + diceValues[i];
+            const diceValues = Array.from(diceElements).map(() => {
+                return Math.floor(Math.random() * 6) + 1;
+            });
+
+            diceElements.forEach((diceElement, index) => {
+                diceElement.textContent = `Dice ${index + 1}: ${diceValues[index]}`;
+            });
+
+            updateScore();
+
+            const rollsRemaining = 4 - rolls;
+            if (rollsRemaining === 0) {
+                diceRollsMessage.textContent = "No rolls remaining";
+                rollDiceBtn.disabled = true;
+            } else {
+                diceRollsMessage.textContent = `Roll dice (${rollsRemaining} roll(s) remaining)`;
             }
         }
 
-        // Add click event listener to the roll dice button
         const rollDiceBtn = document.getElementById("roll-dice-btn");
         rollDiceBtn.addEventListener("click", rollDice);
 
-        // Add click event listeners to the dice elements for selection
-        for (let i = 0; i < diceElements.length; i++) {
-            diceElements[i].addEventListener("click", function () {
-                // Add your code for dice selection here
+        diceElements.forEach((diceElement) => {
+            diceElement.addEventListener("click", function () {
+                // if (selectedDice.length >= 3) {
+                //     console.log("You can only select up to three dice.");
+                //     return;
+                // }
 
-                // console.log("Dice selected: " + this.textContent);
-
-                if (selectedDice.length >= 3) {
-                    console.log("You can only select up to three dice.");
-                    return;
-                }
-
-                // Toggle the selection status of the clicked dice
                 const diceIndex = Array.from(diceElements).indexOf(this);
                 if (selectedDice.includes(diceIndex)) {
-                    // Deselect the dice
                     selectedDice.splice(selectedDice.indexOf(diceIndex), 1);
                     this.classList.remove("selected");
                 } else {
-                    // Select the dice
                     selectedDice.push(diceIndex);
                     this.classList.add("selected");
                 }
+
+                this.parentElement.removeChild(this);
             });
-        }
+        });
     });
 }
 
-// Call the initializeGame function to start the game
+function updateScore() {
+    const scoreSection = document.getElementById("score");
+    const scoreContainer = [
+        document.getElementById("ones"),
+        document.getElementById("twos"),
+        document.getElementById("threes"),
+        document.getElementById("fours"),
+        document.getElementById("fives"),
+        document.getElementById("sixes")
+    ];
+
+    const counts = {};
+    for (let i = 1; i <= 6; i++) {
+        counts[i] = 0;
+    }
+
+    // Count occurrences of each value
+    valueOfDice.forEach((x) => {
+        counts[x] += 1;
+    });
+
+    console.log(counts);
+
+    for (let i = 1; i <= 6; i++) {
+        const count = counts[i] * i;
+        scoreContainer[i - 1].textContent = count.toString();
+    }
+}
+
 initializeGame();
