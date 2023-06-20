@@ -5,7 +5,7 @@
 .game-board-container {
     display: grid;
     grid-template-columns: 60% 40%;
-    grid-auto-rows: 10vw;
+    grid-auto-rows: 20em;
 }
 
 .score {
