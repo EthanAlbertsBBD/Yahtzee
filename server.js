@@ -24,6 +24,7 @@ app.use(passport.session());
 app.use(favicon("public/assets/favicon.png"));
 app.use(express.static("public/views/login"));
 app.use(express.static("public/views/gameboard"));
+app.use(express.static("public/views/leaderboard"));
 
 // Routes
 app.use(indexRoutes);
