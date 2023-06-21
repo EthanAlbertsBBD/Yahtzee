@@ -1,20 +1,17 @@
 const valueOfDice = [];
+let selectedDice = [];
+
 
 function initializeGame() {
     document.addEventListener("DOMContentLoaded", function () {
         const diceContainer = document.getElementById("board");
-        const diceElements = diceContainer.querySelectorAll("p");
+        const diceElements = diceContainer.querySelectorAll("img");
         const diceRollsMessage = document.getElementById("dice-rolls-message");
 
-        let selectedDice = [];
         let rolls = 0;
 
         function rollDice() {
             rolls += 1;
-
-            if (rolls > 4) {
-                return;
-            }
 
             diceElements.forEach((diceElement) => {
                 diceElement.classList.remove("selected");
@@ -34,41 +31,49 @@ function initializeGame() {
             });
 
             diceElements.forEach((diceElement, index) => {
-                diceElement.textContent = `Dice ${index + 1}: ${diceValues[index]}`;
+                const diceValue = diceValues[index];
+                diceElement.textContent = `Dice ${index + 1}: ${diceValue}`;
+                const diceImg = document.getElementById(`dice-img-${index + 1}`);
+                if (diceImg != null) {
+                    diceImg.src = `/dice/dice-${diceValue}.svg`;
+                }
             });
 
             updateScore();
 
-            const rollsRemaining = 4 - rolls;
-            if (rollsRemaining === 0) {
+            const rollsRemaining = 5 - rolls;
+            if (rollsRemaining === 1) {
+                diceRollsMessage.textContent = "Click button to finish game";
+            } else if (rollsRemaining === 0) {
                 diceRollsMessage.textContent = "No rolls remaining";
                 rollDiceBtn.disabled = true;
             } else {
-                diceRollsMessage.textContent = `Roll dice (${rollsRemaining} roll(s) remaining)`;
+                diceRollsMessage.textContent = `Roll dice (${rollsRemaining-1} roll(s) remaining)`;
+            }
+
+            if (rolls === 1) {
+                addEventListenerToDice(diceElements);
             }
         }
 
         const rollDiceBtn = document.getElementById("roll-dice-btn");
         rollDiceBtn.addEventListener("click", rollDice);
+    });
+}
 
-        diceElements.forEach((diceElement) => {
-            diceElement.addEventListener("click", function () {
-                // if (selectedDice.length >= 3) {
-                //     console.log("You can only select up to three dice.");
-                //     return;
-                // }
+function addEventListenerToDice(diceElements) {
+    diceElements.forEach((diceElement) => {
+        diceElement.addEventListener("click", function () {
+            const diceIndex = Array.from(diceElements).indexOf(this);
+            if (selectedDice.includes(diceIndex)) {
+                selectedDice.splice(selectedDice.indexOf(diceIndex), 1);
+                this.classList.remove("selected");
+            } else {
+                selectedDice.push(diceIndex);
+                this.classList.add("selected");
+            }
 
-                const diceIndex = Array.from(diceElements).indexOf(this);
-                if (selectedDice.includes(diceIndex)) {
-                    selectedDice.splice(selectedDice.indexOf(diceIndex), 1);
-                    this.classList.remove("selected");
-                } else {
-                    selectedDice.push(diceIndex);
-                    this.classList.add("selected");
-                }
-
-                this.parentElement.removeChild(this);
-            });
+            this.parentElement.removeChild(this);
         });
     });
 }
