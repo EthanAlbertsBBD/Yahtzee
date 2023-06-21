@@ -8,7 +8,13 @@ router.get("/", (req, res) => {
 
 router.get("/gameboard", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../public/views/gameboard/gameBoard.html")
+    path.join(__dirname, "../public/views/gameboard/gameboard.html")
+  );
+});
+
+router.get("/leaderboard", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../public/views/leaderboard/leaderboard.html")
   );
 });
 
