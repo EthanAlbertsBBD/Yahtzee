@@ -18,4 +18,9 @@ router.get("/leaderboard", (req, res) => {
   );
 });
 
+// Default response for any other request
+router.get((req, res) => {
+  res.status(404);
+})
+
 module.exports = router;
