@@ -30,6 +30,7 @@ passport.use(new GitHubStrategy({
         // TODO: Add user handling logic here
 
         // Continue with authentication flow
+        // console.log(profile);
         return done(null, profile);
     }
 ));
