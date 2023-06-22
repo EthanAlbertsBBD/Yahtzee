@@ -18,8 +18,4 @@ router.get("/leaderboard", (req, res) => {
   );
 });
 
-router.get('/leaderboard', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/views/leaderboard/leaderboard.html'))
-});
-
 module.exports = router;
