@@ -21,6 +21,7 @@ passport.use(
   )
 );
 
+// Github Authentication
 passport.use(new GitHubStrategy({
         clientID: config.github_client_id,
         clientSecret: config.github_client_secret,
@@ -30,7 +31,6 @@ passport.use(new GitHubStrategy({
         // TODO: Add user handling logic here
 
         // Continue with authentication flow
-        // console.log(profile);
         return done(null, profile);
     }
 ));
