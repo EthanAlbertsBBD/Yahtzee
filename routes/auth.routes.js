@@ -22,4 +22,23 @@ router.get("/auth/google/failure", (req, res) => {
   res.send("Something went wrong with Google authentication.");
 });
 
+router.get(
+    "/auth/github",
+    passport.authenticate("github", {
+        scope: ["email", "profile"]
+    })
+);
+
+router.get(
+    "/auth/github/callback",
+    passport.authenticate("github", {
+        successRedirect: "/gameboard",
+        failureRedirect: "/auth/github/failure"
+    })
+);
+
+router.get("/auth/github/failure", (req, res) => {
+    res.send("Something went wrong with Github authentication.");
+});
+
 module.exports = router;
