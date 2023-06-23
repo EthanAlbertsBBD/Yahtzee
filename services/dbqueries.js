@@ -1,31 +1,31 @@
 const DbConnector = require('./dbconnector');
 const dbConnector = new DbConnector();
-async function getScore() {
-    const connection = await dbConnector.getConnection();
-    connection.on('connect', function (err) {
-        if (err) {
-            console.error(err);
-            return;
-        }
 
-        // SQL query execution
-        const request = new Request('SELECT * FROM Users',
-            function (error, rowCount, rows) {
-            if (error) {
-                console.error(error);
-                return;
-            }
+class DbQueries {
+    async getHighScore() {
+        const query = 'SELECT TOP 5 user_id, high_score FROM Users';
+        return dbConnector.executePreparedStatement(query, null);
+    }
 
-            // Process the rows returned by the query
-            rows.forEach(row => {
-                console.log(row);
-            });
+    async getUserById(params) {
+        const query = 'SELECT user_id FROM Users WHERE user_id = @param1';
+        return dbConnector.executePreparedStatement(query, params);
+    }
 
-            // Close the connection
-            connection.close();
-        });
+    async insertUserScore(params) {
+        const query = 'INSERT INTO Users (user_id, score) VALUES (@param1, @param2)';
+        return dbConnector.executePreparedStatement(query, params);
+    }
 
-        // Execute the query
-        connection.execSql(request);
-    });
+    async insertUser(params) {
+        const query = 'INSERT INTO Users (user_id) VALUES (@param1)';
+        return dbConnector.executePreparedStatement(query, params);
+    }
+
+    async updateScore(params) {
+        const query = 'UPDATE Users SET score = @param1 WHERE user_id = @param2';
+        return dbConnector.executePreparedStatement(query, params);
+    }
 }
+
+module.exports = DbQueries;
