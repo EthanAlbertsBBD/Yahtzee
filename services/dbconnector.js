@@ -1,4 +1,4 @@
-class DbConnecter {
+class DbConnector {
   constructor() {
     require('dotenv').config();
     this.Connection = require('tedious').Connection;
@@ -28,4 +28,4 @@ class DbConnecter {
   }
 }
 
-module.exports = DbConnecter;
+module.exports = DbConnector;
