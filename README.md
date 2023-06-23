@@ -1,15 +1,16 @@
 # Yahtzee
-A node express implementation of the popular game yahtzee
-
+A node express implementation of the popular game Yahtzee!
+----------------------------------------------------------
 ## Installation Guide
-
--npm install -g npm@9.7.1
+  -npm install -g npm@9.7.1
 
 ### Modules
--npm install express
+  -npm install
 
--npm install nodemon
+### Dev Modules
+  -npm install nodemon
 
-## To run project 
+## To run the project 
+  -npm start
 
--npm start
+Good luck! 🎲🍀
