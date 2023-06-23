@@ -6,14 +6,14 @@ const session = require("express-session");
 const passport = require("passport");
 const indexRoutes = require("./routes/index.routes");
 const authRoutes = require("./routes/auth.routes");
-const config = require("./config/session.config");
+require("dotenv").config();
 
 // App configuration
 const app = express();
 app.use(passport.initialize());
 app.use(
   session({
-    secret: config.session_secret,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
   })

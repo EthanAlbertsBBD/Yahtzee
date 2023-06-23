@@ -1,16 +1,15 @@
 const passport = require("passport");
-const config = require("../config/auth.config");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
+require("dotenv").config();
 
 // Google authentication
 passport.use(
   new GoogleStrategy(
     {
-      clientID: config.google_client_id,
-      clientSecret: config.google_client_secret,
-      callbackURL: config.google_callback_url,
-      passReqToCallback: true,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: process.env.GOOGLE_CALLBACK_URL,
     },
     async function (request, accessToken, refreshToken, profile, done) {
       // TODO: Add user handling logic here
@@ -22,9 +21,9 @@ passport.use(
 );
 
 passport.use(new GitHubStrategy({
-        clientID: config.github_client_id,
-        clientSecret: config.github_client_secret,
-        callbackURL: config.github_callback_url
+        clientID: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        callbackURL: process.env.GITHUB_CALLBACK_URL
     },
     async function (request, accessToken, refreshToken, profile, done) {
         // TODO: Add user handling logic here
