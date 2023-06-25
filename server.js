@@ -6,6 +6,7 @@ const session = require("express-session");
 const passport = require("passport");
 const indexRoutes = require("./routes/index.routes");
 const authRoutes = require("./routes/auth.routes");
+const dbRoutes = require('./routes/db.routes');
 require("dotenv").config();
 
 // App configuration
@@ -29,6 +30,7 @@ app.use(express.static("public/views/leaderboard"));
 // Routes
 app.use(indexRoutes);
 app.use(authRoutes);
+app.use(dbRoutes);
 
 // Server
 const options = {

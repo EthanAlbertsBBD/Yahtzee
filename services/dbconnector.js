@@ -5,12 +5,18 @@ class DbConnector {
     constructor() {
         this.config = {
             server: process.env.DATABASE_HOST,
+            database: 'YahtzeeDB',
             authentication: {
                 type: 'default',
                 options: {
                     userName: process.env.DATABASE_USER,
                     password: process.env.DATABASE_PASSWORD,
                 },
+            },
+            options: {
+                trustServerCertificate: true,
+                trustedConnection: true,
+                enableArithAbort: false
             },
         };
     }
@@ -24,36 +30,30 @@ class DbConnector {
     }
 
     async executePreparedStatement(query, params) {
-        let connection;
-        let statement;
+        const connection = await this.getConnection();
+        const statement = new sql.PreparedStatement(connection);
 
         try {
-            connection = await this.getConnection();
-            statement = new sql.PreparedStatement(connection);
-
-            await statement.prepare(query);
-
+            const paramValues = {};
             if (params) {
                 params.forEach((param, index) => {
-                    statement.input(`param${index + 1}`, param);
+                    if (param !== undefined && param !== null) {
+                        statement.input(`param${index + 1}`, sql.VarChar);
+                        paramValues[`param${index + 1}`] = param;
+                    }
                 });
             }
 
-            return await statement.execute();
+            await statement.prepare(query);
 
+            return await statement.execute(paramValues);
         } catch (error) {
-            throw new Error('Failed to execute the prepared statement');
+            console.log(`Failed to execute the prepared statement: ${error.message}`);
         } finally {
-            if (statement) {
-                await statement.unprepare();
-            }
-            if (connection) {
-                await connection.close();
-            }
+            await statement.unprepare();
+            await connection.close();
         }
     }
-
 }
-
 
 module.exports = DbConnector;
