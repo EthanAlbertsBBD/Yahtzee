@@ -3,7 +3,7 @@ const dbConnector = new DbConnector();
 
 class DbQueries {
     async getHighScore() {
-        const query = 'SELECT TOP 5 high_score FROM Users';
+        const query = 'SELECT TOP 5 high_score, user_id FROM Users ORDER BY high_score DESC';
         const data = await dbConnector.executePreparedStatement(query, null);
         return data.recordset;
     }
