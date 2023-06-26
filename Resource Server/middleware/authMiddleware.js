@@ -1,5 +1,5 @@
 async function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() || req.cookie.accessToken) {
         // If user is authenticated, allow them to proceed
         return next();
     } else {

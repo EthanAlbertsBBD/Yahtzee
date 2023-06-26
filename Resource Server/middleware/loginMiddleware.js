@@ -2,10 +2,10 @@ const https = require('https');
 require('dotenv').config();
 
 const loginMiddleware = (req, res, next) => {
-    // const loginData = {
-    //     username: req.body.username,
-    //     password: req.body.password
-    // };
+    const loginData = {
+        username: req.body.username,
+        password: req.body.password
+    };
 
     const options = {
         method: 'POST',
@@ -27,7 +27,7 @@ const loginMiddleware = (req, res, next) => {
         response.on('end', () => {
             const { accessToken, refreshToken } = JSON.parse(data);
             res.cookie('access_token', accessToken, { httpOnly: true, secure: true });
-            return next();
+            next();
         });
     });
 
@@ -36,7 +36,7 @@ const loginMiddleware = (req, res, next) => {
         res.status(500).send('Login failed');
     });
 
-    // request.write(JSON.stringify(loginData));
+    request.write(JSON.stringify(loginData));
     request.end();
 };
 
