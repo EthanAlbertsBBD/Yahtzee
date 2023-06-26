@@ -3,7 +3,7 @@ const {
   createUser,
   findUserByEmail,
   storeRefreshToken,
-  revokeRefreshToken,
+  revokeRefreshToken, getStoredRefreshToken,
 } = require('../services/userService');
 const {
   generateToken,

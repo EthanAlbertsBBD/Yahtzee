@@ -2,17 +2,20 @@ const express = require("express");
 const path = require("path");
 const router = express.Router();
 
+const { ensureAuthenticated } = require('../middleware/authMiddleware');
+
+
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/views/login/login.html"));
 });
 
-router.get("/gameboard", (req, res) => {
+router.get("/gameboard", ensureAuthenticated, (req, res) => {
   res.sendFile(
     path.join(__dirname, "../public/views/gameboard/gameboard.html")
   );
 });
 
-router.get("/leaderboard", (req, res) => {
+router.get("/leaderboard", ensureAuthenticated, (req, res) => {
   res.sendFile(
     path.join(__dirname, "../public/views/leaderboard/leaderboard.html")
   );

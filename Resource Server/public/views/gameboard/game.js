@@ -41,7 +41,7 @@ function initializeGame() {
 
             updateScore();
 
-            const rollsRemaining = 5 - rolls;
+            const rollsRemaining = 4 - rolls;
             if (rollsRemaining === 1) {
                 diceRollsMessage.textContent = "Click button to finish game";
             } else if (rollsRemaining === 0) {
