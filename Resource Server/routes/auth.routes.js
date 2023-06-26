@@ -2,6 +2,8 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 require("../controllers/passport");
+const loginMiddleware = require('../middleware/loginMiddleware');
+
 
 router.get(
   "/auth/google",
@@ -39,6 +41,10 @@ router.get(
 
 router.get("/auth/github/failure", (req, res) => {
     res.send("Something went wrong with Github authentication.");
+});
+
+router.post("/login", loginMiddleware, (req, res) => {
+    res.redirect('/gameboard');
 });
 
 module.exports = router;
