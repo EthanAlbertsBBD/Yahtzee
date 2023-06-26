@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 require('../controllers/passport');
-const loginMiddleware = require('../middleware/loginMiddleware');
+const {loginMiddleware, registerMiddleware} = require('../middleware/loginMiddleware');
 
 router.get(
   '/auth/google',
@@ -44,6 +44,10 @@ router.get('/auth/github/failure', (req, res) => {
 
 router.post('/login', loginMiddleware, (req, res) => {
   res.redirect('/gameboard');
+});
+
+router.post('/registerUser', registerMiddleware, (req, res) => {
+    res.redirect('/gameboard')
 });
 
 module.exports = router;
