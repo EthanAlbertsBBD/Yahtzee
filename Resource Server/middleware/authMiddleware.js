@@ -1,11 +1,39 @@
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
 async function ensureAuthenticated(req, res, next) {
-  //TODO Implemnt cookie parser
-  if (req.isAuthenticated() || req.cookies.accessToken) {
+  if (req.isAuthenticated()) {
     // If user is authenticated, allow them to proceed
     return next();
   } else {
-    // If user is not authenticated, redirect to login page or show an error
-    res.redirect('/'); // Modify the URL according to your application's routes
+    // Verify access token from cookie
+    const accessToken = req.cookies.accessToken;
+    if (!accessToken) {
+      return res.redirect('/');
+    }
+
+    try {
+      jwtSecretKey = process.env.SECRET_KEY;
+      const decodedToken = jwt.verify(accessToken, jwtSecretKey, {
+        issuer: process.env.JWT_ISSUER,
+        audience: process.env.JWT_AUDIENCE,
+      });
+
+      // Verify the issuer and audience
+      if (
+        decodedToken.iss !== process.env.JWT_ISSUER ||
+        decodedToken.aud !== process.env.JWT_AUDIENCE
+      ) {
+        throw new Error('Invalid access token');
+      }
+
+      req.user = decodedToken; // Attach the decoded token payload to the request object
+
+      return next();
+    } catch (error) {
+      console.error('Error verifying access token:', error);
+      return res.redirect('/');
+    }
   }
 }
 
