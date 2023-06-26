@@ -22,7 +22,7 @@
 
 <body>
   <section class="signin-signup-container">
-    <form action="" class="sign-in-form">
+    <form action="/login" class="sign-in-form">
       <h2 class="title">Login</h2>
       <section class="input-field">
         <i class="fas fa-user"></i>
@@ -34,7 +34,7 @@
       </section>
       <a class="forgot-password" href="#">Forgot your password?</a>
       <input type="submit" value="Sign in" class="btn solid">
-      <input type="submit" value="Sign up" class="btn solid">
+      <input type="submit" value="Sign up" class="btn solid" onclick="location.href='/register'">
       <p class="social-text">Or continue with:</p>
       <section class="social-media">
         <a href="/auth/google" class="social-icon" aria-label="Register with Google">

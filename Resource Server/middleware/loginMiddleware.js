@@ -26,7 +26,7 @@ const loginMiddleware = (req, res, next) => {
 
         response.on('end', () => {
             const { accessToken, refreshToken } = JSON.parse(data);
-            res.cookie('access_token', accessToken, { httpOnly: true, secure: true });
+            res.cookie('accessToken', accessToken, { httpOnly: true, secure: true });
             next();
         });
     });
