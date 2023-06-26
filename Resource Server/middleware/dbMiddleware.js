@@ -22,9 +22,9 @@ async function listHighScores(req, res) {
     }
 }
 
-async function newUser(req, res) {
+async function newUser(req, res, next) {
     try {
-        const params = [req.query.user_id];
+        const params = [req.body.email];
         const user = await dbQueries.getUserById(params);
 
         if (user) {
@@ -33,7 +33,7 @@ async function newUser(req, res) {
             await dbQueries.insertUser(params)
             res.json({success: true, message: 'New user created successfully'});
         }
-
+        next();
     } catch (error) {
         res.status(500).json({success: false, error: error.message});
     }

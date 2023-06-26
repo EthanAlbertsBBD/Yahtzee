@@ -3,6 +3,12 @@ const passport = require('passport');
 const router = express.Router();
 require('../controllers/passport');
 const {loginMiddleware, registerMiddleware} = require('../middleware/loginMiddleware');
+const {
+    getUser,
+    newUser,
+    listHighScores,
+    updateScore
+} = require('../middleware/dbMiddleware');
 
 router.get(
   '/auth/google',
@@ -46,7 +52,7 @@ router.post('/login', loginMiddleware, (req, res) => {
   res.redirect('/gameboard');
 });
 
-router.post('/registerUser', registerMiddleware, (req, res) => {
+router.post('/registerUser', registerMiddleware, newUser, (req, res) => {
     res.redirect('/gameboard')
 });
 
