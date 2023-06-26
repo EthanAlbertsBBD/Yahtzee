@@ -1,5 +1,5 @@
-const BbQueries = require('../services/dbqueries');
-const dbQueries = new BbQueries();
+const DBQueries = require('../services/dbqueries');
+const dbQueries = new DBQueries();
 
 async function getUser(req, res) {
     try {
