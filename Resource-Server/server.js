@@ -22,10 +22,11 @@ app.use(passport.session());
 // Static files
 //removing for now to get app runner to build
 //app.use(favicon("public/assets/favicon.png"));
-app.use(express.static("public/views/login"));
+app.use(express.static("public/views/login/login.html"));
+app.use(express.static("public/views/login/login.css"));
+app.use(express.static("public/views/login/login.js"));
 app.use(express.static("public/views/gameboard"));
 app.use(express.static("public/views/leaderboard"));
-app.use(express.static("public/views/register"));
 
 // Routes
 app.use(indexRoutes);
