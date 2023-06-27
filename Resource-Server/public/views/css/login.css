@@ -36,7 +36,7 @@
     color: var(--white-color);
   }
   
-  .sign-in-form input[type="text"],
+  .sign-in-form input[type="email"],
   .sign-in-form input[type="password"] {
     
     width: 100%;
