@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>Game Board</title>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Board</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" type="text/css" href="gameboard.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <script src="./game.js"></script>
+    <script type="module" src="navbar.js"></script>
+</head>
+
+<body class="game-board-container">
+    <header>
+        <nav class="navigation-header">
+            <ul>
+            <li><a href="/gameboard">Game Board</a></li>
+            <li><a href="/leaderboard">Leader Board</a></li>
+            <li class="logout-button"><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <img src="https://www.clipartkey.com/mpngs/m/127-1278614_yahtzee-logo-yahtzee-logo-font.png" class="logo" lt="Logo">
+    <h2 class="title">Game Board</h2>
+
+    <section title="board" id="board">
+            <img src="./dice/dice-1.svg" alt="Dice 1" id="dice-img-1" class="dice-image">
+            <img src="./dice/dice-1.svg" alt="Dice 2" id="dice-img-2" class="dice-image">
+            <img src="./dice/dice-1.svg" alt="Dice 3" id="dice-img-3" class="dice-image">
+            <img src="./dice/dice-1.svg" alt="Dice 4" id="dice-img-4" class="dice-image">
+            <img src="./dice/dice-1.svg" alt="Dice 5" id="dice-img-5" class="dice-image">
+
+        <button id="roll-dice-btn"  class="btn-solid">Roll Dice</button>
+        <button id="submit-game-btn"  class="btn-solid" onclick="window.location.href='/leaderboard'">Submit Score</button>
+    </section>
+    <p id="dice-rolls-message">Roll dice to start</p>
+
+    <section title="score" class="score">
+        <section title="combo" class="score_board">
+            <span>Dice Combinations</span>
+            <span>Ones</span>
+            <span>Twos</span>
+            <span>Threes</span>
+            <span>Fours</span>
+            <span>Fives</span>
+            <span>Sixes</span>
+            <span>Total Score</span>
+            <span>Previous Score</span>
+        </section>
+        <section title="points" class="score_board" id="score">
+            <span>Score</span>
+            <span id="ones">0</span>
+            <span id="twos">0</span>
+            <span id="threes">0</span>
+            <span id="fours">0</span>
+            <span id="fives">0</span>
+            <span id="sixes">0</span>
+            <span id="total-score">0</span>
+            <span id="prev-score">0</span>
+        </section>
+    </section>
+    <section>
+
+    </section>
+</body>

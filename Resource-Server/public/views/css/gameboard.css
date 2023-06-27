@@ -1,0 +1,67 @@
+.gameboard-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.selected {
+    color: chocolate;
+}
+
+.game-board-container {
+    padding: 20px;
+    background-color: var(--form-background-color);
+    border-radius: 5px;
+    animation: slideIn 0.5s ease-in-out;
+    text-align: center;
+}
+
+
+.score {
+    grid-template-columns: 20% 20%;
+    display: grid;
+    grid-template-columns: repeat(2, 20%);
+    margin-left: 10rem;
+}
+
+.score > * {
+    border: 1px solid rgb(253, 253, 253);
+}
+
+.score_board {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.score_board > *:not(:last-child) {
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.score_board > * {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+    justify-content: start;
+    align-items: center;
+    padding-left: 2px;
+    color: aliceblue;
+}
+
+.dice-image {
+    width: 100px; /* Adjust the width to your desired value */
+    height: 100px; /* Adjust the height to your desired value */
+}
+
+@keyframes slideIn{
+    0%{
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

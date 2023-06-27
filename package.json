@@ -1,0 +1,16 @@
+{
+    "name": "yahtzee",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "resource-install": "npm install --prefix ./Resource-Server",
+        "resource-start": "node Resource-Server/server.js",
+        "auth-install": "npm install --prefix ./Authentication-Server",
+        "auth-start": "node Authentication-Server/server.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+    }
+  }
+  
