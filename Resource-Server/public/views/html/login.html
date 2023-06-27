@@ -22,14 +22,16 @@
 
 <body>
 
-    <form action="" class="sign-in-form">
+    <form action="/login" method="POST" class="sign-in-form">
       
       <img src="https://www.clipartkey.com/mpngs/m/127-1278614_yahtzee-logo-yahtzee-logo-font.png" class="logo" lt="Logo">
       <h2 class="title">Login</h2>
+
       <label class="fas fa-user"></label>
-      <input type="text" name="username" placeholder="Username" required="yes">
+      <input type="email" id="email" name="email" placeholder="Email" required="required"/>
       <label class="fas fa-lock"></label>
-      <input type="password" name="password" placeholder="Password" id="id_password" required="yes">
+      <input type="password" id="password" name="password" placeholder="Password" required="required"/>
+
       </section>
       <!-- <a class="social-text" href="#">Forgot your password?</a> -->
 
