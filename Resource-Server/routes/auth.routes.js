@@ -29,10 +29,9 @@ router.get('/auth/google/failure', (req, res) => {
   res.send('Something went wrong with Google authentication.');
 });
 
-router.get(
-  '/auth/github',
+router.get('/auth/github',
   passport.authenticate('github', {
-    scope: ['email', 'profile'],
+    scope: [null, 'profile'],
   })
 );
 

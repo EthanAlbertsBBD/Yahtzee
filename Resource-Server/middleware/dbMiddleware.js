@@ -1,6 +1,8 @@
 const DBQueries = require('../services/dbqueries');
 const dbQueries = new DBQueries();
 
+const  {getProfile} = require('../controllers/passport');
+
 async function getUser(req, res) {
     try {
         const params = [req.query.user_id];
@@ -39,20 +41,35 @@ async function newUser(req, res, next) {
     }
 }
 
+async function getScore(req, res) {
+    try {
+        const profile = getProfile();
+        const username = profile.username || profile.displayName;
+        const email = [req.body.email || username];
+        const data = await dbQueries.getUserScore([email]);
+
+        res.json(data[0].high_score);
+        res.end();
+    } catch (error) {
+        res.status(500).json({success: false, error: error.message});
+    }
+}
+
 async function updateScore(req, res) {
     try {
-        const score = req.params('score');
-        let params = [req.query.user_id];
-        const data = await dbQueries.getHighScore(params);
+        const profile = getProfile();
+        const username = profile.username || profile.displayName;
+        const score = req.params.score;
+         const email = [req.body.email || username];
+        const data = await dbQueries.getUserScore([email]);
 
-        if (score > data[0].score) {
-            params = [req.query.user_id, score]
+        if (score > data[0].high_score) {
+            const params = [email, score]
             await dbQueries.updateScore(params)
             res.json({success: true, message: 'User score updated'});
         } else {
             res.json({success: false, message: 'User score stayed the same'});
         }
-
     } catch (error) {
         res.status(500).json({success: false, error: error.message});
     }
@@ -62,5 +79,6 @@ module.exports = {
     getUser,
     newUser,
     listHighScores,
-    updateScore
+    updateScore,
+    getScore
 };
