@@ -17,10 +17,10 @@ passport.use(
     },
     async function (request, accessToken, refreshToken, profile, done) {
       try {
-        const user = await dbQueries.getUserById([profile.email]);
+        const user = await dbQueries.getUserById([profile.displayName]);
 
         if (!user) {
-          await dbQueries.insertUser([profile.email, 0]);
+          await dbQueries.insertUser([profile.displayName]);
         } else {
           profile.accessToken = accessToken;
           profile.refreshToken = refreshToken;
@@ -46,10 +46,10 @@ passport.use(
     async function (request, accessToken, refreshToken, profile, done) {
       try {
         console.log(profile)
-        const user = await dbQueries.getUserById([profile.email || profile.username]);
+        const user = await dbQueries.getUserById([profile.username]);
 
         if (!user) {
-          await dbQueries.insertUser([profile.email, 0]);
+          await dbQueries.insertUser([profile.username]);
         } else {
           profile.accessToken = accessToken;
           profile.refreshToken = refreshToken;
