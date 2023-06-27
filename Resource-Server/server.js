@@ -25,6 +25,7 @@ app.use(passport.session());
 app.use(express.static("public/views/login"));
 app.use(express.static("public/views/gameboard"));
 app.use(express.static("public/views/leaderboard"));
+app.use(express.static("public/views/register"));
 
 // Routes
 app.use(indexRoutes);

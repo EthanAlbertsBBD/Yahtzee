@@ -21,17 +21,23 @@
   </head>
 
 <body>
+
     <form action="" class="sign-in-form">
+      
+      <img src="https://www.clipartkey.com/mpngs/m/127-1278614_yahtzee-logo-yahtzee-logo-font.png" class="logo" lt="Logo">
       <h2 class="title">Login</h2>
-        <i class="fas fa-user"></i>
-        <input type="text" name="username" placeholder="Username" required="yes">
-        <i class="fas fa-lock"></i>
-        <input type="password" name="password" placeholder="Password" id="id_password" required="yes">
+      <label class="fas fa-user"></label>
+      <input type="text" name="username" placeholder="Username" required="yes">
+      <label class="fas fa-lock"></label>
+      <input type="password" name="password" placeholder="Password" id="id_password" required="yes">
       </section>
-      <a class="forgot-password" href="#">Forgot your password?</a>
-      <input type="submit" value="Sign in" class="btn solid">
-      <input type="submit" value="Sign up" class="btn solid">
+      <!-- <a class="social-text" href="#">Forgot your password?</a> -->
+
+      <p id="notification-message" class="notification-message"></p>
+      <input type="submit" value="Sign in" class="btn-solid">
+      <button onclick="window.location.href='./register'" class="btn-solid">Sign up</button>
       <p class="social-text">Or continue with:</p>
+
       <section class="social-media">
         <a href="/auth/google" class="social-icon" aria-label="Register with Google">
           <i class="fab fa-google"></i>
@@ -42,3 +48,33 @@
       </section>
     </form>
 </body>
+
+
+
+<!-- <div class="logo">
+  <img src="logo.png" alt="Logo">
+</div>
+
+<div class="container">
+
+  <form>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password">
+    </div>
+    <div class="form-group">
+      <label for="confirm-password">Confirm Password</label>
+      <input type="password" id="confirm-password" name="confirm-password">
+    </div>
+    <input type="submit" value="Register" class="submit-btn">
+  </form>
+  <div class="social-login">
+    <button>&#xf082;</button> 
+    <button>&#xf099;</button> 
+  </div>
+</div>
+-->
