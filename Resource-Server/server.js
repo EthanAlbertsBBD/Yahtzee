@@ -23,13 +23,10 @@ app.use(passport.session());
 // Static files
 //removing for now to get app runner to build
 //app.use(favicon("public/assets/favicon.png"));
-// app.use(express.static("../views/html"));
-// app.use(express.static("../views/css"));
-// app.use(express.static("../views/js"));
 
-app.use(express.static(path.join(__dirname, "..", "views", "html")));
-app.use(express.static(path.join(__dirname, "..", "views", "css")));
-app.use(express.static(path.join(__dirname, "..", "views", "js")));
+app.use(express.static(path.join(__dirname, "public", "views", "html")));
+app.use(express.static(path.join(__dirname, "public", "views", "css")));
+app.use(express.static(path.join(__dirname, "public", "views", "js")));
 
 // Routes
 app.use(indexRoutes);
