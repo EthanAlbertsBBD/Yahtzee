@@ -1,5 +1,5 @@
 const express = require("express");
-const favicon = require("serve-favicon");
+//const favicon = require("serve-favicon");
 const session = require("express-session");
 const passport = require("passport");
 const indexRoutes = require("./routes/index.routes");
@@ -20,7 +20,8 @@ app.use(
 app.use(passport.session());
 
 // Static files
-app.use(favicon("public/assets/favicon.png"));
+//removing for now to get app runner to build
+//app.use(favicon("public/assets/favicon.png"));
 app.use(express.static("public/views/login"));
 app.use(express.static("public/views/gameboard"));
 app.use(express.static("public/views/leaderboard"));
