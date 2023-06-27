@@ -11,19 +11,23 @@
 }
 
 .game-board-container {
-    display: grid;
-    grid-template-columns: 60% 40%;
-    grid-auto-rows: 20em;
+    padding: 20px;
+    background-color: var(--form-background-color);
+    border-radius: 5px;
+    animation: slideIn 0.5s ease-in-out;
+    text-align: center;
 }
 
+
 .score {
+    grid-template-columns: 20% 20%;
     display: grid;
     grid-template-columns: repeat(2, 20%);
-    /* border: 1px solid black; */
+    margin-left: 10rem;
 }
 
 .score > * {
-    border: 1px solid black;
+    border: 1px solid rgb(253, 253, 253);
 }
 
 .score_board {
@@ -33,7 +37,7 @@
 }
 
 .score_board > *:not(:last-child) {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 .score_board > * {
@@ -43,6 +47,7 @@
     justify-content: start;
     align-items: center;
     padding-left: 2px;
+    color: aliceblue;
 }
 
 .dice-image {

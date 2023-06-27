@@ -6,6 +6,7 @@ const passport = require("passport");
 const indexRoutes = require("./routes/index.routes");
 const authRoutes = require("./routes/auth.routes");
 const dbRoutes = require('./routes/db.routes');
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 // App configuration
@@ -27,6 +28,8 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, "public", "views", "html")));
 app.use(express.static(path.join(__dirname, "public", "views", "css")));
 app.use(express.static(path.join(__dirname, "public", "views", "js")));
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Routes
 app.use(indexRoutes);
