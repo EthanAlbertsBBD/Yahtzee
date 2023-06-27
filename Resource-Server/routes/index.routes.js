@@ -5,7 +5,7 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../middleware/authMiddleware');
 
 router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/views/login/login.html'));
+  res.sendFile(path.join(__dirname, '../public/views/html/login.html'));
 });
 
 router.get('/register', (req, res) => {
