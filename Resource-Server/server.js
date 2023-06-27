@@ -1,7 +1,5 @@
 const express = require("express");
 const favicon = require("serve-favicon");
-const fs = require("fs");
-const https = require("https");
 const session = require("express-session");
 const passport = require("passport");
 const indexRoutes = require("./routes/index.routes");
@@ -32,12 +30,9 @@ app.use(indexRoutes);
 app.use(authRoutes);
 app.use(dbRoutes);
 
-// Server
-const options = {
-  key: fs.readFileSync("key.pem"),
-  cert: fs.readFileSync("cert.pem"),
-};
-
-https.createServer(options, app).listen(8000, () => {
-  console.log("https://localhost:8000");
+// Start the server
+const port = process.env.PORT;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
+
