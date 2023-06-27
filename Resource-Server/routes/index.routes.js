@@ -9,18 +9,18 @@ router.get('/', (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/views/register/register.html'));
+  res.sendFile(path.join(__dirname, '../public/views/html/register.html'));
 });
 
 router.get('/gameboard', ensureAuthenticated, (req, res) => {
   res.sendFile(
-    path.join(__dirname, '../public/views/gameboard/gameboard.html')
+    path.join(__dirname, '../public/views/html/gameboard.html')
   );
 });
 
 router.get('/leaderboard', ensureAuthenticated, (req, res) => {
   res.sendFile(
-    path.join(__dirname, '../public/views/leaderboard/leaderboard.html')
+    path.join(__dirname, '../public/views/html/leaderboard.html')
   );
 });
 
