@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Page</title>
+
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Register</title>
+        <!-- CUSTOM CSS -->
+        <link rel="stylesheet" type="text/css" href="register.css"/>
+        <!-- FONT AWESOME -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+        <!-- GOOGLE FONTS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap"
+              rel="stylesheet"/>
+        <script src="register.js"></script>
+    </head>
+
+<body>
+    <form action="/registerUser" method="POST" class="sign-up-form" onsubmit="return validatePassword()">
+        <img src="https://www.clipartkey.com/mpngs/m/127-1278614_yahtzee-logo-yahtzee-logo-font.png" class="logo" lt="Logo">
+
+        <h2 class="title">Register</h2>
+
+        <label class="fas fa-user"></label>
+        <input type="email" id="email" name="email" placeholder="Email" required="required"/>
+
+        <label class="fas fa-lock"></label>
+        <input type="password" id="password" name="password" placeholder="Password" required="required"/>
+
+        <label class="fas fa-lock"></label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required="required"/>
+
+        <p id="notification-message" class="notification-message"></p>
+        <p id="password-strength-message" class="password-strength-message"></p>
+        <input type="submit" value="Sign up" class="btn-solid"/>
+        
+        <button onclick="window.location.href='./'" class="btn-solid">Back to login</button>
+
+    </form>
+</body>
+</html>

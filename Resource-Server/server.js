@@ -1,7 +1,5 @@
 const express = require("express");
-const favicon = require("serve-favicon");
-const fs = require("fs");
-const https = require("https");
+//const favicon = require("serve-favicon");
 const session = require("express-session");
 const passport = require("passport");
 const indexRoutes = require("./routes/index.routes");
@@ -22,22 +20,20 @@ app.use(
 app.use(passport.session());
 
 // Static files
-app.use(favicon("public/assets/favicon.png"));
-app.use(express.static("public/views/login"));
-app.use(express.static("public/views/gameboard"));
-app.use(express.static("public/views/leaderboard"));
+//removing for now to get app runner to build
+//app.use(favicon("public/assets/favicon.png"));
+app.use(express.static("public/views/html"));
+app.use(express.static("public/views/css"));
+app.use(express.static("public/views/js"));
 
 // Routes
 app.use(indexRoutes);
 app.use(authRoutes);
 app.use(dbRoutes);
 
-// Server
-const options = {
-  key: fs.readFileSync("key.pem"),
-  cert: fs.readFileSync("cert.pem"),
-};
-
-https.createServer(options, app).listen(8000, () => {
-  console.log("https://localhost:8000");
+// Start the server
+const port = process.env.PORT;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
+

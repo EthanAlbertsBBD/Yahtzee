@@ -1,20 +1,32 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
+const path = require('path');
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/views/login/login.html"));
+const { ensureAuthenticated } = require('../middleware/authMiddleware');
+
+
+
+router.get('/', (req, res) => {
+  res.redirect('/login')
 });
 
-router.get("/gameboard", (req, res) => {
+router.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/views/html/login.html'));
+});
+
+router.get('/register', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/views/html/register.html'));
+});
+
+router.get('/gameboard', ensureAuthenticated, (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../public/views/gameboard/gameboard.html")
+    path.join(__dirname, '../public/views/html/gameboard.html')
   );
 });
 
-router.get("/leaderboard", (req, res) => {
+router.get('/leaderboard', ensureAuthenticated, (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../public/views/leaderboard/leaderboard.html")
+    path.join(__dirname, '../public/views/html/leaderboard.html')
   );
 });
 

@@ -4,6 +4,7 @@ const {
   findUserByEmail,
   storeRefreshToken,
   revokeRefreshToken,
+  getStoredRefreshToken,
 } = require('../services/userService');
 const {
   generateToken,
@@ -33,9 +34,10 @@ async function registerUser(req, res) {
     // Create the user and store refresh token
     await createUser(email, hashedPassword);
     const refreshToken = generateRefreshToken(email);
+    const accessToken = generateToken(email);
     await storeRefreshToken(email, refreshToken);
 
-    res.json({ message: 'Registration successful' });
+    res.json({ message: 'Registration successful', accessToken, refreshToken });
   } catch (error) {
     console.error('Error during registration:', error);
     res.status(500).json({ error: 'An unexpected error occurred' });

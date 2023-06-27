@@ -1,6 +1,8 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
-const GitHubStrategy = require('passport-github2').Strategy;
+const GitHubStrategy = require("passport-github2").Strategy;
+const DBQueries = require("../services/dbqueries");
+const dbQueries = new DBQueries();
 require("dotenv").config();
 
 // Google authentication
@@ -12,27 +14,50 @@ passport.use(
       callbackURL: process.env.GOOGLE_CALLBACK_URL,
     },
     async function (request, accessToken, refreshToken, profile, done) {
-      // TODO: Add user handling logic here
+      try {
+        const user = await dbQueries.getUserById([profile.email]);
 
-      // Continue with authentication flow
-      return done(null, profile);
+        if (!user) {
+          await dbQueries.insertUser([profile.email, 0]);
+        } else {
+          profile.accessToken = accessToken;
+          profile.refreshToken = refreshToken;
+        }
+
+        return done(null, profile);
+      } catch (error) {
+        return done(error);
+      }
     }
   )
 );
 
-passport.use(new GitHubStrategy({
-        clientID: process.env.GITHUB_CLIENT_ID,
-        clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: process.env.GITHUB_CALLBACK_URL
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      callbackURL: process.env.GITHUB_CALLBACK_URL,
     },
     async function (request, accessToken, refreshToken, profile, done) {
-        // TODO: Add user handling logic here
+      try {
+        console.log(profile)
+        const user = await dbQueries.getUserById([profile.email || profile.username]);
 
-        // Continue with authentication flow
-        // console.log(profile);
+        if (!user) {
+          await dbQueries.insertUser([profile.email, 0]);
+        } else {
+          profile.accessToken = accessToken;
+          profile.refreshToken = refreshToken;
+        }
+
         return done(null, profile);
+      } catch (error) {
+        return done(error);
+      }
     }
-));
+  )
+);
 
 // Serialization and deserialization of users
 passport.serializeUser(function (user, done) {
