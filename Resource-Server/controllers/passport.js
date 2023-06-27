@@ -5,6 +5,8 @@ const DBQueries = require("../services/dbqueries");
 const dbQueries = new DBQueries();
 require("dotenv").config();
 
+let currentProfile;
+
 // Google authentication
 passport.use(
   new GoogleStrategy(
@@ -23,6 +25,8 @@ passport.use(
           profile.accessToken = accessToken;
           profile.refreshToken = refreshToken;
         }
+
+        currentProfile = profile;
 
         return done(null, profile);
       } catch (error) {
@@ -51,6 +55,8 @@ passport.use(
           profile.refreshToken = refreshToken;
         }
 
+        currentProfile = profile;
+
         return done(null, profile);
       } catch (error) {
         return done(error);
@@ -67,3 +73,10 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (user, done) {
   done(null, user);
 });
+
+module.exports = {
+    passport,
+    getProfile: function () {
+        return currentProfile;
+    }
+}
