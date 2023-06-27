@@ -5,6 +5,7 @@ const passport = require("passport");
 const indexRoutes = require("./routes/index.routes");
 const authRoutes = require("./routes/auth.routes");
 const dbRoutes = require('./routes/db.routes');
+const cookieParser = require('cookie-parser');
 require("dotenv").config();
 
 // App configuration
@@ -17,6 +18,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(passport.session());
 
 // Static files

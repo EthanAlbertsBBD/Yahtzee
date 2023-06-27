@@ -42,11 +42,11 @@ async function newUser(req, res, next) {
 async function updateScore(req, res) {
     try {
         const score = req.params('score');
-        let params = [req.query.user_id];
-        const data = await dbQueries.getHighScore(params);
+         const email = [req.body.email];
+        const data = await dbQueries.getHighScore([email]);
 
         if (score > data[0].score) {
-            params = [req.query.user_id, score]
+            const params = [email, score]
             await dbQueries.updateScore(params)
             res.json({success: true, message: 'User score updated'});
         } else {
