@@ -1,11 +1,11 @@
 const express = require("express");
+const path = require("path");
 //const favicon = require("serve-favicon");
 const session = require("express-session");
 const passport = require("passport");
 const indexRoutes = require("./routes/index.routes");
 const authRoutes = require("./routes/auth.routes");
 const dbRoutes = require('./routes/db.routes');
-const path = require("path");
 require("dotenv").config();
 
 // App configuration
