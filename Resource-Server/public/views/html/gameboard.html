@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Board</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <!-- CUSTOM CSS -->
        <link rel="stylesheet" type="text/css" href="../css/gameboard.css">
     <!-- FONT AWESOME -->
@@ -16,13 +17,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap"
           rel="stylesheet">
+    <script src="../js/game.js"></script>
 </head>
 
-<body>
-<h2 class="title">Game Board</h2>
-
-<article class="game-board-container">
-    <script src="../js/game.js"></script>
+<body class="game-board-container">
+    <img src="https://www.clipartkey.com/mpngs/m/127-1278614_yahtzee-logo-yahtzee-logo-font.png" class="logo" lt="Logo">
+    <h2 class="title">Game Board</h2>
 
     <section title="board" id="board">
             <img src="./dice/dice-1.svg" alt="Dice 1" id="dice-img-1" class="dice-image">
@@ -30,8 +30,10 @@
             <img src="./dice/dice-1.svg" alt="Dice 3" id="dice-img-3" class="dice-image">
             <img src="./dice/dice-1.svg" alt="Dice 4" id="dice-img-4" class="dice-image">
             <img src="./dice/dice-1.svg" alt="Dice 5" id="dice-img-5" class="dice-image">
-        <button id="roll-dice-btn">Roll Dice</button>
+
+        <button id="roll-dice-btn"  class="btn-solid">Roll Dice</button>
     </section>
+    <p id="dice-rolls-message">Roll dice to start</p>
 
     <section title="score" class="score">
         <section title="combo" class="score_board">
@@ -54,7 +56,6 @@
         </section>
     </section>
     <section>
-        <p id="dice-rolls-message">Roll dice to start</p>
+
     </section>
-</article>
 </body>

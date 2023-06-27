@@ -35,6 +35,7 @@ async function ensureAuthenticated(req, res, next) {
       return res.redirect('/');
     }
   }
+  next();
 }
 
 module.exports = { ensureAuthenticated };
