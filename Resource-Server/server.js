@@ -19,6 +19,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(passport.session());
 
 // Static files

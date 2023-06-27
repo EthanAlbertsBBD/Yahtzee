@@ -36,7 +36,7 @@ function initializeGame() {
         diceElement.textContent = `Dice ${index + 1}: ${diceValue}`;
         const diceImg = document.getElementById(`dice-img-${index + 1}`);
         if (diceImg != null) {
-          diceImg.src = `/dice/dice-${diceValue}.svg`;
+          diceImg.src = `./dice/dice-${diceValue}.svg`;
         }
       });
 
