@@ -59,7 +59,7 @@ async function updateScore(req, res) {
     try {
         const profile = getProfile();
         const username = profile.username || profile.displayName;
-        const score = req.params.score;
+        const score = req.body.score;
          const email = [req.body.email || username];
         const data = await dbQueries.getUserScore([email]);
 
