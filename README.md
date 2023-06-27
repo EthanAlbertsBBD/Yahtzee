@@ -27,7 +27,8 @@ Install dependencies for the Authentication server by running
   ```
 
 ## Environment Variable Guide
-create a .env file in the root of the Resource-server folder with the folling keys. Insert values Where we have not filled them in already
+Please make sure to check that the secret key is the same in both .env files.
+Create a .env file in the root of the Resource-server folder with the folling keys. Insert values Where we have not filled them in already
 ```javascript
 GOOGLE_CLIENT_ID=48579065357-mkqbtlvpfs2fkh1r0vpk32etc1rgnsad.apps.googleusercontent.com
 GOOGLE_CLIENT_SECRET=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
@@ -48,9 +49,8 @@ JWT_ISSUER=https://f758uv5bqz.us-east-1.awsapprunner.com/
 JWT_AUDIENCE=OAuth2ClientId
 ```
 
-create a .env file in the root of the Authentication-server folder with the folling keys. Insert values Where we have not filled them in already
+Create a .env file in the root of the Authentication-server folder with the folling keys. Insert values Where we have not filled them in already
 ```javascript
-SESSION_SECRET= []
 DATABASE_HOST= []
 DATABASE_PASSWORD=[]
 DATABASE_USER=[]
