@@ -33,8 +33,8 @@ Create a .env file in the root of the Resource-server folder with the folling ke
 GOOGLE_CLIENT_ID=48579065357-mkqbtlvpfs2fkh1r0vpk32etc1rgnsad.apps.googleusercontent.com
 GOOGLE_CLIENT_SECRET=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
 GOOGLE_CALLBACK_URL=https://localhost:8000/auth/google/callback
-GITHUB_CLIENT_ID=187d8a1a21a0631bdc5f
-GITHUB_CLIENT_SECRET=58a31166d21586e200512c8d3221ceac0777f5a9
+GITHUB_CLIENT_ID=aac8714566f03aceb1cf
+GITHUB_CLIENT_SECRET=04fb241e8fcd459faa9fc35a848842e4187a5b8a
 GITHUB_CALLBACK_URL=https://localhost:8000/auth/github/callback
 SESSION_SECRET= []
 DATABASE_HOST= []
